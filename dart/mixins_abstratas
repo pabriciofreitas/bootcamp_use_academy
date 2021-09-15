@@ -1,0 +1,47 @@
+abstract class Cobranca {
+  void cobrarSaida();
+
+  void cobrarEntrada();
+}
+
+mixin CobrarEntradaBasica {
+  void cobrarEntradaBasica() {
+    print("Cobrou a entrada basica");
+  }
+}
+
+class Employee implements Cobranca {
+  final String name;
+
+  Employee({required this.name});
+
+  @override
+  void cobrarEntrada() {
+    print("cobrou entrada");
+  }
+
+  @override
+  void cobrarSaida() {}
+}
+
+class EmployeeBasic with CobrarEntradaBasica implements Cobranca {
+  final String name;
+
+  EmployeeBasic({required this.name});
+
+  @override
+  void cobrarEntrada() {
+    print("cobrou entrada");
+  }
+
+  @override
+  void cobrarSaida() {}
+}
+
+void main() {
+  final Employee employee = Employee(name: "Gabriel");
+  employee.cobrarEntrada();
+
+  final EmployeeBasic employeeBasic = EmployeeBasic(name: "Rafael");
+  employeeBasic.cobrarEntradaBasica();
+}
